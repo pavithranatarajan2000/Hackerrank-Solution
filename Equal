@@ -1,0 +1,35 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the equal function below.
+def equal(arr):
+    SHIFT=[0,1,2]
+    lowest = min(arr)  # 2
+ 
+    results = [0] * len(SHIFT)  # 3
+    for item in arr:
+        for i in SHIFT:
+            gap = item - lowest + i  # 4
+            results[i] += gap // 5 + SHIFT[(gap%5 + 1) // 2]  # 5
+    return min(results)  # 6
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        n = int(input())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = equal(arr)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
