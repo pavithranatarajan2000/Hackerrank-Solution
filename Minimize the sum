@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumSum function below.
+def minimumSum(l, r):
+    # Return the minimum sum among all arrays that satisfy the condition.
+    a=l[0]
+    b=r[0]
+    res=0
+    for i in range(1,len(l)):
+        c=l[i]
+        d=r[i]
+        if(c>b):
+            res+=c-b
+            a=c
+            b=c
+        elif(d<a):
+            res+=a-d
+            a=d
+            b=d
+        else:
+            if(c>a):
+                a=c
+            if(d<b):
+                b=d
+    return res
+                
+            
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    l = list(map(int, input().rstrip().split()))
+
+    r = list(map(int, input().rstrip().split()))
+
+    result = minimumSum(l, r)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
